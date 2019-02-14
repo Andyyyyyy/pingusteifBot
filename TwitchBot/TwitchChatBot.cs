@@ -25,13 +25,15 @@ namespace TwitchBot
 		int monsterfailcounter = 0;
 		int spinnercounter = 0;
 		Random rand = new Random();
-		string[] xd = { "XDXDXDXDXDXD", "xdxd", "XdDXDXdDXDDXD", "xxDD", "xdddddddddddddd", "XDXXdxdXDDxDXd" };
-
+		string[] xd = { "XDXDXDXDXDXD", "xdxd", "XdDXDXdDXDDXD", "xxDD", "xdddddddddddddd", "XDXXdxdXDDxDXd", "XD", "xdxdddxdxdxdx", "xD", "Xd", "XXDDD", "XDdxXDDDXD"};
+		System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notif.wav");
 
 		public TwitchChatBot()
 		{
 			commands.Add("!nicememe");
 			commands.Add("!yt");
+			commands.Add("!discord");
+			commands.Add("!donate");
 			commands.Add("!lowQuality");
 			commands.Add("!fleisch");
 			commands.Add("!wat");
@@ -43,6 +45,8 @@ namespace TwitchBot
 			commands.Add("!monsterfail");
 			//commands.Add("!spin");
 			commands.Add("!hackfleischhassenderzerhacker");
+			commands.Add("!lotto");
+			commands.Add("!giveaway");
 			TwitchAPI.Settings.AccessToken = TwitchInfo.BotToken;
 			fs.SetChannelByChannelId(TwitchAPI.Users.v5.GetUserByNameAsync("pingusteif").Result.Matches[0].Id);
 		}
@@ -90,6 +94,14 @@ namespace TwitchBot
 			else if (m == "!lowquality")
 			{
 				client.SendMessage("mimimimimimimimi​");
+			}
+			else if (m == "!discord")
+			{
+				client.SendMessage("PinguSteif Discord​: https://discord.gg/CZCRhEQ");
+			}
+			else if (m == "!donate")
+			{
+				client.SendMessage("That'd be​ very cash money of you: https://streamlabs.com/pingusteif");
 			}
 			else if (m == "!wat")
 			{
@@ -156,15 +168,21 @@ namespace TwitchBot
 			{
 				client.SendMessage("@" + e.ChatMessage.DisplayName + " er zerhackt dich! 🔪");
 			}
-
-
+			else if (m == "!giveaway")
+			{
+				client.SendMessage("Willste Isolierband?");
+			}
+			else if(m == "!lotto")
+			{
+				client.SendMessage("Too bad. You lost the lottery ¯\\_(ツ)_/¯ ");
+			}
 			if (m.Contains("xd"))
 			{
 				int randomPick = rand.Next(0, xd.Length - 1);
 				client.SendMessage(xd[randomPick]);
 			}
-
-
+			
+			player.Play();
 		}
 
 		private void Client_OnLog(object sender, OnLogArgs e)
