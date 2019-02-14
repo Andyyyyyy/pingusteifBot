@@ -26,6 +26,7 @@ namespace TwitchBot
 		int spinnercounter = 0;
 		Random rand = new Random();
 		string[] xd = { "XDXDXDXDXDXD", "xdxd", "XdDXDXdDXDDXD", "xxDD", "xdddddddddddddd", "XDXXdxdXDDxDXd", "XD", "xdxdddxdxdxdx", "xD", "Xd", "XXDDD", "XDdxXDDDXD"};
+		//You have to create a notiv.wav yourself
 		System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notif.wav");
 
 		public TwitchChatBot()
